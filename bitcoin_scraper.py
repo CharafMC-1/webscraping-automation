@@ -22,6 +22,7 @@ options.add_argument(f"user-agent={ua.random}")
 
 # Set up ChromeDriver using webdriver_manager
 service = Service(ChromeDriverManager().install())
+
 driver = webdriver.Chrome(service=service, options=options)
 
 # Define the target website (CoinMarketCap Bitcoin page)
