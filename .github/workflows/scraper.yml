@@ -2,14 +2,14 @@ name: Bitcoin Scraper (Every 10 Minutes)
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Run every 10 minutes
-  workflow_dispatch:        # Allows manual triggering
+    - cron: "*/10 * * * *" # Run every 10 minutes
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   scrape-bitcoin:
     runs-on: ubuntu-latest
     env:
-      TZ: America/New_York  # Set your local timezone if needed
+      TZ: America/New_York # Set your local timezone if needed
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -26,7 +26,9 @@ jobs:
           pip install selenium pandas webdriver-manager fake-useragent
 
       - name: Run Selenium scraper
-        run: python bitcoin_scraper.py
+        run: |
+           python bitcoin_scraper.py
+           bitcoin_scraper_optimized.py
 
       - name: Commit and Push updated CSV
         run: |
